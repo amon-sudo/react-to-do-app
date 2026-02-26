@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 function ToDoList() {
 
-  const [tasks, setTasks] = useState(["Eat Bfreakfas", "Take a shower", "Walk the dog"])
+  const [tasks, setTasks] = useState(["Eat Breakfas", "Take a shower", "Walk the dog"])
   const [newTask, setNewTask] = useState("")
 
   function handleInputChange (event){
@@ -27,17 +27,27 @@ function ToDoList() {
           <h1>To-Do-List</h1>
 
             <input type='text'
-            placeholder='enter a task'
+            placeholder='Enter a new task'
             value={newTask}
             onChange={handleInputChange}/>
           <button className='add-btn' onClick={addTask}>ADD TASK</button>
         <ol>
-          {tasks.map((task, index) =>{
-            <li key ={index}>
+          {tasks.map((task, index) =>
+               <li key ={index}>
               <span className='text'>{task}</span>
+              <button className='delete-btn' onClick={() =>deleteTask(index)}>
+                    Delete
+              </button>
+                 <button className='move-btn' onClick={() =>deleteTask(index)}>
+                    ⬆️
+              </button>
+                   <button className='move-btn' onClick={() =>deleteTask(index)}>
+                    ⬇️
+              </button>
             </li>
+        
 
-          }) }
+          ) }
         </ol>
     </div>
     </>
