@@ -10,8 +10,9 @@ function ToDoList() {
     setNewTask(event.target.value)
   }
   function addTask (){
-        if(newTask.trim("").length > 0) return         setTasks(t => [...t, newTask])
-        setNewTask("")
+        if(newTask.trim() == "") return;    
+          setTasks(t => [...t, newTask]);
+          setNewTask("");
   }
   function deleteTask (index) {
           const updatedTasks = tasks.filter((elemrnt, i) => i  !==index  )
@@ -40,7 +41,7 @@ function ToDoList() {
             placeholder='Enter a new task'
             value={newTask}
             onChange={handleInputChange}/>
-          <button className='add-btn' onClick={addTask}>ADD TASK</button>
+          <button className='add-btn' onClick={addTask}>ADD</button>
         <ol>
           {tasks.map((task, index) =>
                <li key ={index}>
