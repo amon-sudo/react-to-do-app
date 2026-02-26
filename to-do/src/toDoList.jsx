@@ -1,9 +1,9 @@
 
 import React from 'react'
 import { useState } from 'react'
-function toDoList() {
+function ToDoList() {
 
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(["Eat Bfreakfas", "Take a shower", "Walk the dog"])
   const [newTask, setNewTask] = useState("")
 
   function handleInputChange (event){
@@ -30,11 +30,18 @@ function toDoList() {
             placeholder='enter a task'
             value={newTask}
             onChange={handleInputChange}/>
+          <button className='add-btn' onClick={addTask}>ADD TASK</button>
+        <ol>
+          {tasks.map((task, index) =>{
+            <li key ={index}>
+              <span className='text'>{task}</span>
+            </li>
 
-
+          }) }
+        </ol>
     </div>
     </>
   )
 }
 
-export default toDoList
+export default ToDoList
