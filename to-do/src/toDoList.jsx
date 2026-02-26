@@ -3,23 +3,33 @@ import React from 'react'
 import { useState } from 'react'
 function ToDoList() {
 
-  const [tasks, setTasks] = useState(["Eat Breakfas", "Take a shower", "Walk the dog"])
+  const [tasks, setTasks] = useState([])
   const [newTask, setNewTask] = useState("")
 
   function handleInputChange (event){
     setNewTask(event.target.value)
   }
   function addTask (){
-
+        if(newTask.trim("").length > 0) return         setTasks(t => [...t, newTask])
+        setNewTask("")
   }
   function deleteTask (index) {
-
+          const updatedTasks = tasks.filter((elemrnt, i) => i  !==index  )
+          setTasks(updatedTasks)
   }
   function moveTaskUp (index) {
-
+          if(index>0){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+            setTasks(updatedTasks)
+          }
   }
-  function moveTaskUp(index) {
-
+  function moveTaskDown(index) {
+      if(index < tasks.length - 1){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+            setTasks(updatedTasks)
+          }
   }
   return (
     <>
@@ -38,10 +48,10 @@ function ToDoList() {
               <button className='delete-btn' onClick={() =>deleteTask(index)}>
                     Delete
               </button>
-                 <button className='move-btn' onClick={() =>deleteTask(index)}>
+                 <button className='move-btn' onClick={() =>moveTaskUp(index)}>
                     ⬆️
               </button>
-                   <button className='move-btn' onClick={() =>deleteTask(index)}>
+                   <button className='move-btn' onClick={() =>moveTaskDown(index)}>
                     ⬇️
               </button>
             </li>
